@@ -3,16 +3,23 @@ import { editor } from "monaco-editor";
 
 import Editor from "./components/editor";
 
-import styles from "./App.module.scss";
+// import styles from "./App.module.scss";
+import BasicLayout from "./layouts/basicLayout";
 
 const App: React.FC = () => {
   console.log("manoco", editor);
 
   return (
-    <div className={styles.App}>
+    <BasicLayout>
       <Editor />
-    </div>
+    </BasicLayout>
   );
+
+  // return (
+  //   <div className={styles.App}>
+  //     <Editor />
+  //   </div>
+  // );
 };
 
 export default App;
