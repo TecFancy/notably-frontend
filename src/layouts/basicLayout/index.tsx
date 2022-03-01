@@ -7,7 +7,7 @@ import React from "react";
 import styles from "./index.module.scss";
 
 interface PropsType {
-  children: React.ReactElement;
+  children: React.ReactNode;
 }
 
 const BasicLayout: React.FC<PropsType> = (props) => {

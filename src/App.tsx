@@ -1,25 +1,22 @@
 import React from "react";
-import { editor } from "monaco-editor";
 
-import Editor from "./components/editor";
-
-// import styles from "./App.module.scss";
 import BasicLayout from "./layouts/basicLayout";
+import Slide from "./components/slide";
+import Header from "./components/header";
+import EditorContent from "./components/editorContent";
+
+import styles from "./App.module.scss";
 
 const App: React.FC = () => {
-  console.log("manoco", editor);
-
   return (
     <BasicLayout>
-      <Editor />
+      <Slide />
+      <div className={styles.contentContainer}>
+        <Header />
+        <EditorContent />
+      </div>
     </BasicLayout>
   );
-
-  // return (
-  //   <div className={styles.App}>
-  //     <Editor />
-  //   </div>
-  // );
 };
 
 export default App;
