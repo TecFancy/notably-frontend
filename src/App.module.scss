@@ -1,8 +1,46 @@
-.contentContainer {
-  flex: 1;
+.App {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 100vh;
+  .sidebar {
+    width: 240px;
+    height: 100%;
+    .sidebarInner {
+      padding: 0 16px;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  .content {
+    flex: 1;
+    height: 100%;
+    .header {
+      background-color: green;
+      height: 32px;
+      line-height: 32px;
+      padding: 0 16px;
+    }
+    .pageTitle {
+      line-height: 54px;
+      font-size: 40px;
+      font-weight: 700;
+      white-space: normal;
+      cursor: text;
+      .pageTitleInner {
+        padding-left: calc(96px + env(safe-area-inset-left));
+        padding-right: calc(96px + env(safe-area-inset-right));
+      }
+    }
+    .editor {
+      height: 100%;
+      .editorInner {
+        background-color: red;
+        height: 100%;
+      }
+    }
+  }
 }
