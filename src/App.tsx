@@ -1,29 +1,64 @@
 import React, { useEffect } from "react";
-import { editor } from "monaco-editor";
-import githubTheme from "monaco-themes/themes/GitHub.json";
+import { EditorState } from "@codemirror/state";
+import { history, historyKeymap } from "@codemirror/history";
+import { defaultKeymap } from "@codemirror/commands";
+import { markdown } from "@codemirror/lang-markdown";
+import { closeBrackets, closeBracketsKeymap } from "@codemirror/closebrackets";
+import { defaultHighlightStyle } from "@codemirror/highlight";
+import { indentOnInput } from "@codemirror/language";
+import { highlightActiveLineGutter } from "@codemirror/gutter";
+import { bracketMatching } from "@codemirror/matchbrackets";
+import { highlightSelectionMatches, searchKeymap } from "@codemirror/search";
+import { autocompletion, completionKeymap } from "@codemirror/autocomplete";
+import { commentKeymap } from "@codemirror/comment";
+import { rectangularSelection } from "@codemirror/rectangular-selection";
+import { lintKeymap } from "@codemirror/lint";
+import {
+  EditorView,
+  highlightSpecialChars,
+  drawSelection,
+  dropCursor,
+  highlightActiveLine,
+  keymap,
+} from "@codemirror/view";
 
 import styles from "./App.module.scss";
 
-import type { IKeyboardEvent } from "monaco-editor";
-
 const App: React.FC = () => {
   useEffect(() => {
-    const instance = editor.create(
-      document.querySelector(`.${styles.editorInner}`) as HTMLDivElement,
-      {
-        language: "markdown",
-        lineNumbers: "off",
-        roundedSelection: false,
-        minimap: {
-          enabled: false,
-        },
-      }
-    );
-    editor.defineTheme("github", githubTheme as any);
-    instance.onKeyUp((keyUpEvent: IKeyboardEvent) => {
-      const target = keyUpEvent.target as HTMLInputElement;
-      target.setAttribute("value", "test");
-      console.log(instance.getPosition(), target.value, instance.getValue());
+    const editorState = EditorState.create({
+      doc: "# Heading 1.",
+      extensions: [
+        highlightActiveLineGutter(),
+        highlightSpecialChars(),
+        history(),
+        drawSelection(),
+        dropCursor(),
+        EditorState.allowMultipleSelections.of(true),
+        indentOnInput(),
+        defaultHighlightStyle.fallback,
+        bracketMatching(),
+        closeBrackets(),
+        autocompletion(),
+        rectangularSelection(),
+        highlightActiveLine(),
+        highlightSelectionMatches(),
+        markdown(),
+        keymap.of([
+          ...closeBracketsKeymap,
+          ...defaultKeymap,
+          ...searchKeymap,
+          ...historyKeymap,
+          ...commentKeymap,
+          ...completionKeymap,
+          ...lintKeymap,
+        ]),
+        // keymap.of(defaultKeymap),
+      ],
+    });
+    const view = new EditorView({
+      state: editorState,
+      parent: document.querySelector("#editor") as HTMLElement,
     });
   }, []);
 
@@ -38,7 +73,7 @@ const App: React.FC = () => {
           <div className={styles.pageTitleInner}>Page Title</div>
         </div>
         <div className={styles.editor}>
-          <div className={styles.editorInner} />
+          <div id="editor" className={styles.editorInner} />
         </div>
       </div>
     </div>
