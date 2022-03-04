@@ -39,6 +39,14 @@
       height: 100%;
       .editorInner {
         height: 100%;
+        .heading1 {
+          color: red;
+          font-size: 36px;
+        }
+        .heading2 {
+          color: green;
+          font-size: 28px;
+        }
       }
     }
   }
