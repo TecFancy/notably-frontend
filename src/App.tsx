@@ -33,6 +33,7 @@ import {
 } from "@codemirror/view";
 
 import styles from "./App.module.scss";
+import { addClass2MdLine } from "./utils/addClass2MdLine";
 
 const textStartsWith = [
   {
@@ -52,59 +53,9 @@ const textStartsWith = [
 const App: React.FC = () => {
   useEffect(() => {
     const editorState = EditorState.create({
-      doc: "# Heading 1.\n# Heading 12.\n## Heading 2.\nhaha\n### Heading 3.\njojo\n### Heading 4.",
+      doc: undefined,
       extensions: [
-        ViewPlugin.fromClass(
-          class {
-            decorations: DecorationSet;
-            constructor(view: EditorView) {
-              this.decorations = this.getDeco(view);
-            }
-            update(update: ViewUpdate) {
-              if (update.docChanged || update.selectionSet) {
-                this.decorations = this.getDeco(update.view);
-              }
-            }
-            getDeco(view: EditorView) {
-              const deco: Range<Decoration>[] = [];
-              for (const { from, to } of view.visibleRanges) {
-                // for (let pos = from; pos <= to; ) {
-                //   const line = view.state.doc.lineAt(pos);
-                //   syntaxTree(view.state).iterate({
-                //     from: pos,
-                //     to,
-                //     enter: (type, pos, to) => {
-                //       if (type.name === "ATXHeading1") {
-                //         console.log(type, pos);
-                //         deco.push(
-                //           Decoration.line({ class: styles.heading1 }).range(
-                //             line.from
-                //           )
-                //         );
-                //       }
-                //     },
-                //   });
-                //   pos = line.to + 1;
-                // }
-                syntaxTree(view.state).iterate({
-                  from,
-                  to,
-                  enter: (type, from, to) => {
-                    if (type.name === "ATXHeading1") {
-                      deco.push(
-                        Decoration.line({ class: styles.heading1 }).range(from)
-                      );
-                    }
-                  },
-                });
-              }
-              return Decoration.set(deco);
-            }
-          },
-          {
-            decorations: (v) => v.decorations,
-          }
-        ),
+        addClass2MdLine(),
         // ViewPlugin.fromClass(
         //   class {
         //     decorations: DecorationSet;
