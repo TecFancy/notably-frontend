@@ -1,11 +1,49 @@
 $fontColor: rgb(55, 53, 47);
 
-.heading1 {
+@mixin commonHeading {
   color: $fontColor;
-  font-size: 36px;
 }
 
-.heading2 {
-  color: $fontColor;
-  font-size: 28px;
+.heading.heading1 {
+  @mixin common {
+    font-size: 36px;
+  }
+  .headingMark {
+    @include commonHeading();
+    @include common();
+  }
+  .heading1Mark {
+    @include commonHeading();
+    @include common();
+  }
+  .headingText {
+    @include commonHeading();
+    @include common();
+  }
+  .heading1Text {
+    @include commonHeading();
+    @include common();
+  }
+}
+
+.heading.heading2 {
+  @mixin common {
+    font-size: 28px;
+  }
+  .headingMark {
+    @include commonHeading();
+    @include common();
+  }
+  .heading2Mark {
+    @include commonHeading();
+    @include common();
+  }
+  .headingText {
+    @include commonHeading();
+    @include common();
+  }
+  .heading2Text {
+    @include commonHeading();
+    @include common();
+  }
 }
