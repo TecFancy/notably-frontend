@@ -92,23 +92,31 @@ export const addClass2MdLine = () => {
             to,
             enter: (type, from, to) => {
               switch (type.name) {
+                case "HeaderMark":
+                  deco.push(
+                    Decoration.mark({
+                      attributes: { class: styles.headingMark },
+                      tagName: "SPAN",
+                    }).range(from, to)
+                  );
+                  break;
                 case "ATXHeading1":
                   deco.push(
-                    Decoration.replace({
-                      widget: new MarkdownWidget(
-                        view,
-                        view.state.doc.sliceString(from, to),
-                        "ATXHeading1"
-                      ),
-                    }).range(from, to)
+                    // Decoration.replace({
+                    //   widget: new MarkdownWidget(
+                    //     view,
+                    //     view.state.doc.sliceString(from, to),
+                    //     "ATXHeading1"
+                    //   ),
+                    // }).range(from, to)
                     // Decoration.widget({
                     //   widget: new MarkdownWidget(view, "#", styles.heading1),
                     // }).range(to)
                     // Decoration.line({ class: styles.heading1 }).range(from)
-                    // Decoration.mark({
-                    //   attributes: { class: styles.heading1 },
-                    //   tagName: "SPAN",
-                    // }).range(from, to)
+                    Decoration.mark({
+                      attributes: { class: styles.heading1 },
+                      tagName: "SPAN",
+                    }).range(from, to)
                     // Decoration.mark({
                     //   inclusive: true,
                     //   attributes: { class: styles.heading1 },
@@ -118,21 +126,21 @@ export const addClass2MdLine = () => {
                   break;
                 case "ATXHeading2":
                   deco.push(
-                    Decoration.replace({
-                      widget: new MarkdownWidget(
-                        view,
-                        view.state.doc.sliceString(from, to),
-                        "ATXHeading2"
-                      ),
-                    }).range(from, to)
+                    // Decoration.replace({
+                    //   widget: new MarkdownWidget(
+                    //     view,
+                    //     view.state.doc.sliceString(from, to),
+                    //     "ATXHeading2"
+                    //   ),
+                    // }).range(from, to)
                     // Decoration.widget({
                     //   widget: new MarkdownWidget(view, "##", styles.heading2),
                     // }).range(to)
                     // Decoration.line({ class: styles.heading2 }).range(from)
-                    // Decoration.mark({
-                    //   attributes: { class: styles.heading2 },
-                    //   tagName: "SPAN",
-                    // }).range(from, to)
+                    Decoration.mark({
+                      attributes: { class: styles.heading2 },
+                      tagName: "SPAN",
+                    }).range(from, to)
                   );
                   break;
                 default:

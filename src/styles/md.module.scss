@@ -4,7 +4,9 @@ $fontColor: rgb(55, 53, 47);
   color: $fontColor;
 }
 
-.heading.heading1 {
+.heading1 {
+  font-size: 36px;
+  @include commonHeading();
   @mixin common {
     font-size: 36px;
   }
@@ -26,7 +28,9 @@ $fontColor: rgb(55, 53, 47);
   }
 }
 
-.heading.heading2 {
+.heading2 {
+  font-size: 28px;
+  @include commonHeading();
   @mixin common {
     font-size: 28px;
   }
