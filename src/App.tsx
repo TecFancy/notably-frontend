@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { EditorState, Facet } from "@codemirror/state";
+import { EditorState, Facet, StateEffect, StateField } from "@codemirror/state";
 import { history, historyKeymap } from "@codemirror/history";
 import { defaultKeymap } from "@codemirror/commands";
 import { markdown } from "@codemirror/lang-markdown";
