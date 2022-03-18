@@ -1,0 +1,53 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  .sidebar {
+    width: 240px;
+    height: 100%;
+    .sidebarInner {
+      padding: 0 16px;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  .content {
+    flex: 1;
+    height: 100%;
+    .header {
+      background-color: green;
+      height: 32px;
+      line-height: 32px;
+      padding: 0 16px;
+    }
+    .pageTitle {
+      line-height: 54px;
+      font-size: 40px;
+      font-weight: 700;
+      white-space: normal;
+      cursor: text;
+      .pageTitleInner {
+        padding-left: calc(96px + env(safe-area-inset-left));
+        padding-right: calc(96px + env(safe-area-inset-right));
+      }
+    }
+    .editor {
+      height: 100%;
+      .editorInner {
+        height: 100%;
+        .heading1 {
+          color: red;
+          font-size: 36px;
+        }
+        .heading2 {
+          color: green;
+          font-size: 28px;
+        }
+      }
+    }
+  }
+}
