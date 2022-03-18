@@ -13,13 +13,22 @@ import { history, historyKeymap } from "@codemirror/history";
 import { markdown, markdownKeymap } from "@codemirror/lang-markdown";
 
 import styles from "./index.module.scss";
+import { syntaxTree } from "@codemirror/language";
 
 const addHeading12md = ViewPlugin.fromClass(
   class {
     decorations: DecorationSet;
     constructor(view: EditorView) {
       this.decorations = Decoration.set([]);
-      console.log("view", view.state.changes());
+      for (const range of view.visibleRanges) {
+        syntaxTree(view.state).iterate({
+          from: range.from,
+          to: range.to,
+          enter: function (type, from, to) {
+            console.log(type, from, to);
+          },
+        });
+      }
     }
     update(update: ViewUpdate) {
       if (update.docChanged) {
