@@ -51,11 +51,11 @@ const Editor = () => {
     });
     new EditorView({
       state: editorState,
-      parent: document.querySelector(`.${styles.editor}`) as HTMLDivElement,
+      parent: document.querySelector("#editor") as HTMLDivElement,
     });
   }, []);
 
-  return <div className={styles.editor} />;
+  return <div id="editor" className={styles.editor} />;
 };
 
 export default Editor;
