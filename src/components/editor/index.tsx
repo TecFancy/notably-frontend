@@ -8,12 +8,13 @@ import {
   ViewPlugin,
   ViewUpdate,
 } from "@codemirror/view";
+import { syntaxTree } from "@codemirror/language";
 import { defaultKeymap } from "@codemirror/commands";
 import { history, historyKeymap } from "@codemirror/history";
+import { defaultHighlightStyle } from "@codemirror/highlight";
 import { markdown, markdownKeymap } from "@codemirror/lang-markdown";
 
 import styles from "./index.module.scss";
-import { syntaxTree } from "@codemirror/language";
 
 const addHeading12md = ViewPlugin.fromClass(
   class {
@@ -44,15 +45,17 @@ const Editor = () => {
       doc: "# Heading 1\n\n## Heading 2\n",
       extensions: [
         addHeading12md,
+        defaultHighlightStyle.fallback,
         history(),
         markdown(),
         keymap.of([...defaultKeymap, ...historyKeymap, ...markdownKeymap]),
       ],
     });
-    new EditorView({
+    const editor = new EditorView({
       state: editorState,
       parent: document.querySelector("#editor") as HTMLDivElement,
     });
+    return () => editor.destroy();
   }, []);
 
   return <div id="editor" className={styles.editor} />;
