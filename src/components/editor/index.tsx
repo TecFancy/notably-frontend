@@ -32,6 +32,15 @@ const mdHighlightStyle = HighlightStyle.define([
   { tag: tags.heading6, class: "cm-heading-6" },
 ]);
 
+const classNamesMap: { [propName: string]: string } = {
+  ATXHeading1: "cm-heading-1",
+  ATXHeading2: "cm-heading-2",
+  ATXHeading3: "cm-heading-3",
+  ATXHeading4: "cm-heading-4",
+  ATXHeading5: "cm-heading-5",
+  ATXHeading6: "cm-heading-6",
+};
+
 const Editor = () => {
   useEffect(() => {
     const editorState = EditorState.create({
@@ -57,19 +66,11 @@ const Editor = () => {
                   to: lineObj.to,
                   enter: function (type, from, to) {
                     if (lineObj.from === from && lineObj.to === to) {
-                      if (type.name === "ATXHeading1") {
-                        console.log("hhh");
+                      if (classNamesMap[type.name]) {
                         builder.add(
                           line.from,
                           line.from,
-                          Decoration.line({ class: "cm-heading-1" })
-                        );
-                      }
-                      if (type.name === "ATXHeading2") {
-                        builder.add(
-                          line.from,
-                          line.from,
-                          Decoration.line({ class: "cm-heading-2" })
+                          Decoration.line({ class: classNamesMap[type.name] })
                         );
                       }
                     }
