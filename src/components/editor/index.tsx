@@ -29,6 +29,7 @@ const mdHighlightStyle = HighlightStyle.define([
   { tag: tags.heading4, class: "cm-heading-4" },
   { tag: tags.heading5, class: "cm-heading-5" },
   { tag: tags.heading6, class: "cm-heading-6" },
+  { tag: tags.list, class: "cm-list" },
 ]);
 
 const classNamesMap: { [propName: string]: string } = {
@@ -38,6 +39,7 @@ const classNamesMap: { [propName: string]: string } = {
   ATXHeading4: "cm-heading-4",
   ATXHeading5: "cm-heading-5",
   ATXHeading6: "cm-heading-6",
+  ListItem: "cm-listItem",
 };
 
 const Editor = () => {
