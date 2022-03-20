@@ -22,30 +22,29 @@ import {
 import styles from "./index.module.scss";
 
 const mdHighlightStyle = HighlightStyle.define([
-  { tag: tags.heading, class: "cm-heading" },
-  { tag: tags.heading1, class: "cm-heading-1" },
-  { tag: tags.heading2, class: "cm-heading-2" },
-  { tag: tags.heading3, class: "cm-heading-3" },
-  { tag: tags.heading4, class: "cm-heading-4" },
-  { tag: tags.heading5, class: "cm-heading-5" },
-  { tag: tags.heading6, class: "cm-heading-6" },
+  { tag: tags.heading1, class: "cm-heading cm-heading-1" },
+  { tag: tags.heading2, class: "cm-heading cm-heading-2" },
+  { tag: tags.heading3, class: "cm-heading cm-heading-3" },
+  { tag: tags.heading4, class: "cm-heading cm-heading-4" },
+  { tag: tags.heading5, class: "cm-heading cm-heading-5" },
+  { tag: tags.heading6, class: "cm-heading cm-heading-6" },
   { tag: tags.list, class: "cm-list" },
 ]);
 
 const classNamesMap: { [propName: string]: string } = {
-  ATXHeading1: "cm-heading-1",
-  ATXHeading2: "cm-heading-2",
-  ATXHeading3: "cm-heading-3",
-  ATXHeading4: "cm-heading-4",
-  ATXHeading5: "cm-heading-5",
-  ATXHeading6: "cm-heading-6",
+  ATXHeading1: "cm-heading cm-heading-1",
+  ATXHeading2: "cm-heading cm-heading-2",
+  ATXHeading3: "cm-heading cm-heading-3",
+  ATXHeading4: "cm-heading cm-heading-4",
+  ATXHeading5: "cm-heading cm-heading-5",
+  ATXHeading6: "cm-heading cm-heading-6",
   ListItem: "cm-listItem",
 };
 
 const Editor = () => {
   useEffect(() => {
     const editorState = EditorState.create({
-      doc: "# Heading 1\n\n## Heading 2\n",
+      doc: "# Heading 1\n\n## Heading 2\n\n### Heading 3\n\n#### Heading 4\n\n##### Heading 5\n\n###### Heading 6\n",
       extensions: [
         ViewPlugin.fromClass(
           class {
