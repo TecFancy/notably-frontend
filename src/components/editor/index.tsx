@@ -1,6 +1,15 @@
 import { useEffect } from "react";
 import { EditorState } from "@codemirror/state";
+import { syntaxTree } from "@codemirror/language";
 import { defaultKeymap } from "@codemirror/commands";
+import { RangeSetBuilder } from "@codemirror/rangeset";
+import { history, historyKeymap } from "@codemirror/history";
+import { markdown, markdownKeymap } from "@codemirror/lang-markdown";
+import {
+  defaultHighlightStyle,
+  HighlightStyle,
+  tags,
+} from "@codemirror/highlight";
 import {
   Decoration,
   DecorationSet,
@@ -9,18 +18,8 @@ import {
   ViewPlugin,
   ViewUpdate,
 } from "@codemirror/view";
-import { history, historyKeymap } from "@codemirror/history";
-import { markdown, markdownKeymap } from "@codemirror/lang-markdown";
-import { RangeSetBuilder } from "@codemirror/rangeset";
-import {
-  defaultHighlightStyle,
-  HighlightStyle,
-  tags,
-} from "@codemirror/highlight";
 
 import styles from "./index.module.scss";
-import { Line } from "@codemirror/text";
-import { syntaxTree } from "@codemirror/language";
 
 const mdHighlightStyle = HighlightStyle.define([
   { tag: tags.heading, class: "cm-heading" },
